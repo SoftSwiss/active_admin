@@ -29,6 +29,7 @@ describe "auto linking resources" do
       active_admin_namespace.register Post
     end
     it "should return a link with the display name of the object" do
+      expect(self).to receive(:url_options).and_return {}
       expect(self).to receive(:url_for) { |url| url }
       expect(self).to receive(:link_to).with "Hello World", admin_post_path(post)
       auto_link(post)
