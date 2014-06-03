@@ -11,8 +11,8 @@ module ActiveAdmin
 
   class CanCanAdapter < AuthorizationAdapter
 
-    def authorized?(action, subject = nil)
-      cancan_ability.can?(action, subject)
+    def authorized?(action, subject = nil, *extra_args)
+      cancan_ability.can?(action, subject, *extra_args)
     end
 
     def cancan_ability
