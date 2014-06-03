@@ -50,7 +50,7 @@ module ActiveAdmin
     #        a look at `#normalized(klass)`
     #
     # @return [Boolean]
-    def authorized?(action, subject = nil)
+    def authorized?(action, subject = nil, *extra_args)
       true
     end
 

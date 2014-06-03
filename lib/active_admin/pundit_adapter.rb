@@ -9,7 +9,7 @@ module ActiveAdmin
 
   class PunditAdapter < AuthorizationAdapter
 
-    def authorized?(action, subject = nil)
+    def authorized?(action, subject = nil, *)
       policy = retrieve_policy(subject)
       action = format_action(action, subject)
 
