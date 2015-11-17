@@ -46,6 +46,7 @@ module ActiveAdmin
         end
 
         def build_collection
+          collection.load
           if items_in_collection?
             render_index
           else
