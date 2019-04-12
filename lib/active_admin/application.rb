@@ -117,6 +117,9 @@ module ActiveAdmin
     # default show_count for scopes
     inheritable_setting :scopes_show_count, true
 
+    # default cache_count_ttl for scopes
+    inheritable_setting :scopes_cache_count_ttl, false
+
     # Request parameters that are permitted by default
     inheritable_setting :permitted_params, [
       :utf8, :_method, :authenticity_token, :commit, :id

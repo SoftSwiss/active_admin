@@ -27,7 +27,11 @@ module ActiveAdmin
       # If you want to internationalize the scope name, you can add
       # to your i18n files a key like "active_admin.scopes.scope_method".
       def scope(*args, &block)
-        default_options = {show_count: namespace.scopes_show_count}
+        default_options = {
+          show_count: namespace.scopes_show_count,
+          cache_count_ttl: namespace.scopes_cache_count_ttl
+        }
+
         options = default_options.merge(args.extract_options!)
         title = args[0] rescue nil
         method = args[1] rescue nil

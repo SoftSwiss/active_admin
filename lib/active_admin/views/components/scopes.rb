@@ -35,7 +35,7 @@ module ActiveAdmin
           a href: url_for(scope: scope.id, params: params), class: 'table_tools_button' do
             text_node scope_name(scope)
             span class: 'count' do
-              "(#{get_scope_count(scope)})"
+              "(#{prepare_cache_scope_count(scope)})"
             end if options[:scope_count] && scope.show_count
           end
         end
@@ -52,6 +52,19 @@ module ActiveAdmin
           params[:scope] == scope.id
         else
           active_admin_config.default_scope(self) == scope
+        end
+      end
+
+      # NOTE: caching only without filter
+      def prepare_cache_scope_count(scope)
+        if scope.cache_count_ttl && params[:q].blank?
+          cache_key = "#{params[:controller]}_#{params[:action]}_#{scope.id}"
+
+          Rails.cache.fetch cache_key, expire_in: scope.cache_count_ttl do
+            get_scope_count(scope)
+          end
+        else
+          get_scope_count(scope)
         end
       end
 

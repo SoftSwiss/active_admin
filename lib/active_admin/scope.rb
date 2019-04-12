@@ -1,7 +1,7 @@
 module ActiveAdmin
   class Scope
 
-    attr_reader :scope_method, :id, :scope_block, :display_if_block, :show_count, :default_block
+    attr_reader :scope_method, :id, :scope_block, :display_if_block, :show_count, :cache_count_ttl, :default_block
 
     # Create a Scope
     #
@@ -40,6 +40,7 @@ module ActiveAdmin
 
       @localizer        = options[:localizer]
       @show_count       = options.fetch(:show_count, true)
+      @cache_count_ttl  = options.fetch(:cache_count_ttl, false)
       @display_if_block = options[:if]      || proc{ true }
       @default_block    = options[:default] || proc{ false }
     end
